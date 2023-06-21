@@ -3,11 +3,12 @@ let app = express();
 let port = process.env.port||9515;
 let Mongo = require('mongodb');
 let bodyParser = require('body-parser');
-
+const cors =require('cors');
 let {dbConnect,getData,postData,updateData,deleteData} = require('./controller/dbController')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send('Small Basket');
