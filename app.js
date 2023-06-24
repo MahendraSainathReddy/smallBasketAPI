@@ -74,7 +74,7 @@ app.get('/brands/:brand_name' , async(req, res)=>{
 })
 
 app.get('/product-details/:id' , async(req, res)=>{
-    let id = new Mongo.ObjectId(req.params.id);
+    let id = Number(req.params.id);
     let query = {product_id:id};
     let collection = 'products';
     let output = await getData(collection, query);
