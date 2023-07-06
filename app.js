@@ -115,9 +115,9 @@ app.post('/add-to-basket',async(req,res)=>{
 })
 
 app.post('/orderDetails', async(req,res)=>{
-    let query = {product_id:{$in:req.body.product_id}};
-    let collection = 'menu';
-    let output = await getData(collection,query);
+    let data = req.body;
+    let collection = 'orders';
+    let output = await postData(collection,data);
     res.send(output);
 })
 
