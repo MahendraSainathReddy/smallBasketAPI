@@ -121,6 +121,14 @@ app.post('/orderDetails', async(req,res)=>{
     res.send(output);
 })
 
+app.get('/orderSuccess/:order_id' , async(req, res)=>{
+    let order_id = Number(req.params.order_id);
+    let query = {order_id:order_id};
+    let collection = 'orders';
+    let output = await getData(collection, query);
+    res.send(output);
+})
+
 app.delete('/remove-item',async (req,res)=>{
     let collection='mybasket';
     let condition={"_id":new Mongo.ObjectId(req.body._id)};
