@@ -32,8 +32,13 @@ app.get('/categories',async (req,res)=>{
 
 app.get('/products', async (req,res)=>{
     let query={};
+    let lowRange=Number(req.query.lowRange)
+    let highRange=Number(req.query.highRange)
     if(req.query.brand_id){
         query={brand_id : Number(req.query.brand_id)};
+    }
+    else if(lowRange&&highRange){
+        query={$and:[{discounted_price:{$gte:lowRange,$lte:highRange}}]};
     }
     let collection="products";
     let output = await getData(collection,query);
